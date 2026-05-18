@@ -1,0 +1,27 @@
+# 18 May 2026
+# Task 2: Exploratory data analysis (EDA)
+# Needed: Python (unlikely to require numpy), Pandas, Matplotlib, and Seaborn
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv(r"C:Data Set For Task-2026\Data Set For Task\1) iris.csv")
+#print(df.head())
+#print(df.info())
+
+specie_setosa = df[df['species'] == 'setosa']
+print(specie_setosa.describe())
+print(specie_setosa.median(numeric_only=True))
+print(specie_setosa.mode(numeric_only=True))
+
+specie_versicolor = df[df['species'] == 'versicolor']
+print(specie_versicolor.describe())
+print(specie_versicolor.median(numeric_only=True))
+print(specie_versicolor.mode(numeric_only=True))
+
+specie_virginica = df[df['species'] == 'virginica']
+print(specie_virginica.describe())
+print(specie_virginica.median(numeric_only=True))
+print(specie_virginica.mode(numeric_only=True))
+
