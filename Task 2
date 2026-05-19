@@ -10,18 +10,45 @@ df = pd.read_csv(r"C:Data Set For Task-2026\Data Set For Task\1) iris.csv")
 #print(df.head())
 #print(df.info())
 
-specie_setosa = df[df['species'] == 'setosa']
-print(specie_setosa.describe())
+specie_setosa = df[df['species'] == 'setosa'] # isolating by species [isb]
+print(specie_setosa.mean(numeric_only=True))
 print(specie_setosa.median(numeric_only=True))
 print(specie_setosa.mode(numeric_only=True))
+print(specie_setosa.std(numeric_only=True))
 
-specie_versicolor = df[df['species'] == 'versicolor']
-print(specie_versicolor.describe())
+specie_versicolor = df[df['species'] == 'versicolor'] # isb
+print(specie_versicolor.mean(numeric_only=True))
 print(specie_versicolor.median(numeric_only=True))
 print(specie_versicolor.mode(numeric_only=True))
+print(specie_versicolor.std(numeric_only=True))
 
-specie_virginica = df[df['species'] == 'virginica']
-print(specie_virginica.describe())
+specie_virginica = df[df['species'] == 'virginica'] # isb
+print(specie_virginica.mean(numeric_only=True))
 print(specie_virginica.median(numeric_only=True))
 print(specie_virginica.mode(numeric_only=True))
+print(specie_virginica.std(numeric_only=True))
 
+# Begin visualisation 
+# Let's start with the box plots - Comparing each iris specie according to the column feature
+fig, axes = plt.subplots(2,2, figsize = (12, 8)) # setting the figure size and setting the axes of the plot to 1 row and 3 columns
+
+sns.boxplot(x = 'species', y = 'sepal_length', data = df, ax = axes[0,0], palette= 'Set2', hue = 'species', legend = False)
+sns.boxplot(x = 'species', y = 'sepal_width', data = df, ax = axes[0,1], palette= 'Set2', hue = 'species', legend = False)
+sns.boxplot(x = 'species', y = 'petal_length', data = df, ax = axes[1,0], palette= 'Set2', hue = 'species', legend = False)
+sns.boxplot(x = 'species', y = 'petal_width', data = df, ax = axes[1,1], palette= 'Set2', hue = 'species', legend = False)
+
+fig.suptitle("Iris Species Comparison By Feature")
+plt.tight_layout()
+plt.show()
+
+# Secondly, histograms - Also comparing each iris specie according to column feature
+fig, axes = plt.subplots(2,2, figsize = (12,8))
+
+sns.histplot(data= df, x = 'sepal_length', ax= axes[0,0], hue= 'species', palette = 'Set2')
+sns.histplot(data= df, x = 'sepal_width', ax= axes[0,1], hue= 'species', palette= 'Set2')
+sns.histplot(data =  df, x = 'petal_length', ax= axes[1,0], hue = 'species', palette= 'Set2')
+sns.histplot(data= df, x = 'petal_width', ax= axes[1,1], hue= 'species', palette= 'Set2')
+
+fig.suptitle("Iris Species Distribution By Feature")
+plt.tight_layout()
+plt.show()
