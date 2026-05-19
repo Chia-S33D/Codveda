@@ -52,3 +52,21 @@ sns.histplot(data= df, x = 'petal_width', ax= axes[1,1], hue= 'species', palette
 fig.suptitle("Iris Species Distribution By Feature")
 plt.tight_layout()
 plt.show()
+
+# And finally, a Scatterplot: looking at the relationships as follows: sepal_length vs petal_length, sepal_width vs petal_width, sepal_length vs sepal_width, petal_length vs petal_width
+fig, axes = plt.subplots(2,2, figsize = (12,8))
+
+sns.scatterplot(data = df, x = "sepal_length", y = "petal_length", ax = axes[0,0], hue = 'species', palette = 'Set2', alpha = 0.6)
+sns.scatterplot(data = df, x = "sepal_width", y = "petal_width", ax = axes[0,1], hue = 'species', palette = 'Set2', alpha = 0.6)
+sns.scatterplot(data = df, x =  'sepal_length', y = 'sepal_width', ax = axes[1,0], hue = 'species', palette = 'Set2', alpha = 0.6)
+sns.scatterplot(data=df, x = 'petal_length', y = 'petal_width', ax = axes[1,1], hue = 'species', palette = 'Set2', alpha = 0.6)
+
+fig.suptitle("Iris Species Feature Relationships")
+plt.tight_layout()
+plt.show()
+
+# creating a heat map to visualise the correlation between the species features
+fig, ax = plt.subplots(figsize = (8,6))
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap='coolwarm', ax=ax)
+plt.title('Iris feature correlations')
+plt.show()
